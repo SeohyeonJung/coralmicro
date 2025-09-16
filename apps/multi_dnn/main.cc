@@ -99,7 +99,7 @@ constexpr char kModelPath[] =
     vTaskSuspend(nullptr);
   }
 
-  // AllocateTensors() 이후
+  // input .raw
   const int num_inputs = interpreter.inputs_size();
   printf("inputs=%d\r\n", num_inputs);
 
@@ -120,7 +120,6 @@ constexpr char kModelPath[] =
     return true;
   };
 
-  // 시그니처 순서에 맞춘 파일 매핑
   const char* kFiles[3] = {
     "/models/attention_mask.raw",   // input[0] = attention_mask
     "/models/input_ids.raw",        // input[1] = input_ids
@@ -132,14 +131,13 @@ constexpr char kModelPath[] =
     for (int i = 0; i < 3; ++i) {
       TfLiteTensor* tin = interpreter.input_tensor(i);
       if (tin->type != kTfLiteInt32) {
-        // 대부분 int32일 것이나, 다르면 로그로 확인하고 파일 포맷을 그 타입에 맞춰 재생성
         printf("WARN: input[%d] type=%d (expected INT32=3). bytes=%d\r\n",
               i, tin->type, tin->bytes);
       }
       ok &= load_raw_exact(kFiles[i], tflite::GetTensorData<void>(tin), tin->bytes);
     }
   } else if (num_inputs == 1) {
-    // 구형 1입력 모델 호환
+
     TfLiteTensor* tin = interpreter.input_tensor(0);
     ok &= load_raw_exact("/models/mobilebert_emo_input.raw",
                         tflite::GetTensorData<void>(tin), tin->bytes);
