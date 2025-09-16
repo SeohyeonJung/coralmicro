@@ -132,7 +132,7 @@ bool DetectPerson(tflite::MicroInterpreter* interpreter) {
 
   // Turn on Status LED to show the board is on.
   LedSet(Led::kStatus, true);
-
+  
 #if defined(MULTICORE_MODEL_CASCADE_DEMO)
   // For the demo version, this timer signals to switch to the m7 every 5
   // seconds.
