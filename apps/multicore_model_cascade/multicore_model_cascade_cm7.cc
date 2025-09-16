@@ -464,7 +464,7 @@ void reset_count_rpc(struct jsonrpc_request* r) {
         break;
       }
 #endif  // defined(MULTICORE_MODEL_CASCADE_DEMO)
-      vTaskDelay(pdMS_TO_TICKS(1000));
+      vTaskDelay(pdMS_TO_TICKS(1000)); // 1s delay
     }
 
     low_power = true;

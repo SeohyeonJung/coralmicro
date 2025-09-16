@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-add_subdirectory(elf_loader)
-add_subdirectory(mfg_test)
-add_subdirectory(multicore_model_cascade)
-add_subdirectory(rack_test)
-add_subdirectory(usb_drive)
-add_subdirectory(first_project)
-add_subdirectory(multi_dnn)
+add_executable_m7(first_project
+    main.cc
+)
+
+target_link_libraries(first_project
+    libs_base-m7_freertos
+)
