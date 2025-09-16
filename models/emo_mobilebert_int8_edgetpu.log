@@ -1,0 +1,22 @@
+Edge TPU Compiler version 16.0.384591198
+Input: emo_mobilebert_int8.tflite
+Output: emo_mobilebert_int8_edgetpu.tflite
+
+Operator                       Count      Status
+
+TANH                           1          Mapped to Edge TPU
+SOFTMAX                        24         Mapped to Edge TPU
+RESHAPE                        96         Mapped to Edge TPU
+RESHAPE                        1          Operation is working on an unsupported data type
+PAD                            2          Mapped to Edge TPU
+ADD                            315        Mapped to Edge TPU
+SUB                            1          Mapped to Edge TPU
+QUANTIZE                       1          Operation is otherwise supported, but not mapped due to some unspecified limitation
+CAST                           1          Operation is working on an unsupported data type
+STRIDED_SLICE                  3          Mapped to Edge TPU
+TRANSPOSE                      96         Mapped to Edge TPU
+CONCATENATION                  1          Mapped to Edge TPU
+FULLY_CONNECTED                363        Mapped to Edge TPU
+MUL                            146        Mapped to Edge TPU
+GATHER                         2          Operation not supported
+BATCH_MATMUL                   48         Mapped to Edge TPU
